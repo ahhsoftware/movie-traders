@@ -1,0 +1,75 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RazorLangVersion>3.0</RazorLangVersion>
+    <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\MovieTraders.Data\Crud\Models\ModelBase.cs" Link="Data\Crud\ModelBase.cs" />
+    <Compile Include="..\MovieTraders.Data\Crud\Models\MovieInsertInput.cs" Link="Data\Crud\MovieInsertInput.cs" />
+    <Compile Include="..\MovieTraders.Data\Crud\Models\MovieInsertOutput.cs" Link="Data\Crud\MovieInsertOutput.cs" />
+    <Compile Include="..\MovieTraders.Data\Crud\Models\MovieQueryInput.cs" Link="Data\Crud\MovieQueryInput.cs" />
+    <Compile Include="..\MovieTraders.Data\Crud\Models\MovieQueryOutput.cs" Link="Data\Crud\MovieQueryOutput.cs" />
+    <Compile Include="..\MovieTraders.Data\Crud\Models\MovieQueryResult.cs" Link="Data\Crud\MovieQueryResult.cs" />
+    <Compile Include="..\MovieTraders.Data\Crud\Models\MoviesByCountyInput.cs" Link="Data\Crud\MoviesByCountyInput.cs" />
+    <Compile Include="..\MovieTraders.Data\Crud\Models\MoviesByCountyOutput.cs" Link="Data\Crud\MoviesByCountyOutput.cs" />
+    <Compile Include="..\MovieTraders.Data\Crud\Models\MoviesByCountyResult.cs" Link="Data\Crud\MoviesByCountyResult.cs" />
+    <Compile Include="..\MovieTraders.Data\Crud\Models\UserMovieMergeInput.cs" Link="Data\Crud\UserMovieMergeInput.cs" />
+    <Compile Include="..\MovieTraders.Data\Crud\Models\UserMovieMergeOutput.cs" Link="Data\Crud\UserMovieMergeOutput.cs" />
+    <Compile Include="..\MovieTraders.Data\Crud\Models\UserMovieQueryInput.cs" Link="Data\Crud\UserMovieQueryInput.cs" />
+    <Compile Include="..\MovieTraders.Data\Crud\Models\UserMovieQueryOutput.cs" Link="Data\Crud\UserMovieQueryOutput.cs" />
+    <Compile Include="..\MovieTraders.Data\Crud\Models\UserMovieQueryResult.cs" Link="Data\Crud\UserMovieQueryResult.cs" />
+    <Compile Include="..\MovieTraders.Data\Crud\Models\UserTradesInput.cs" Link="Data\Crud\UserTradesInput.cs" />
+    <Compile Include="..\MovieTraders.Data\Crud\Models\UserTradesOutput.cs" Link="Data\Crud\UserTradesOutput.cs" />
+    <Compile Include="..\MovieTraders.Data\Crud\Models\UserTradesResult.cs" Link="Data\Crud\UserTradesResult.cs" />
+    <Compile Include="..\MovieTraders.Data\Extended\Models\ModelBase.cs" Link="Data\Extended\Models\ModelBase.cs" />
+    <Compile Include="..\MovieTraders.Data\Extended\Models\UserForForgotPasswordInput.cs" Link="Data\Extended\Models\UserForForgotPasswordInput.cs" />
+    <Compile Include="..\MovieTraders.Data\Extended\Models\UserForForgotPasswordOutput.cs" Link="Data\Extended\Models\UserForForgotPasswordOutput.cs" />
+    <Compile Include="..\MovieTraders.Data\Extended\Models\UserForForgotPasswordResult.cs" Link="Data\Extended\Models\UserForForgotPasswordResult.cs" />
+    <Compile Include="..\MovieTraders.Data\Extended\Models\UserForLoginInput.cs" Link="Data\Extended\Models\UserForLoginInput.cs" />
+    <Compile Include="..\MovieTraders.Data\Extended\Models\UserForLoginOutput.cs" Link="Data\Extended\Models\UserForLoginOutput.cs" />
+    <Compile Include="..\MovieTraders.Data\Extended\Models\UserForLoginResult.cs" Link="Data\Extended\Models\UserForLoginResult.cs" />
+    <Compile Include="..\MovieTraders.Data\Extended\Models\UserInsertInput.cs" Link="Data\Extended\Models\UserInsertInput.cs" />
+    <Compile Include="..\MovieTraders.Data\Extended\Models\UserInsertOutput.cs" Link="Data\Extended\Models\UserInsertOutput.cs" />
+    <Compile Include="..\MovieTraders.Data\Extended\Models\UserLockInfoInput.cs" Link="Data\Extended\Models\UserLockInfoInput.cs" />
+    <Compile Include="..\MovieTraders.Data\Extended\Models\UserLockInfoOutput.cs" Link="Data\Extended\Models\UserLockInfoOutput.cs" />
+    <Compile Include="..\MovieTraders.Data\Extended\Models\UserLockInfoResult.cs" Link="Data\Extended\Models\UserLockInfoResult.cs" />
+    <Compile Include="..\MovieTraders.Data\Extended\Models\UserLockInput.cs" Link="Data\Extended\Models\UserLockInput.cs" />
+    <Compile Include="..\MovieTraders.Data\Extended\Models\UserLockOutput.cs" Link="Data\Extended\Models\UserLockOutput.cs" />
+    <Compile Include="..\MovieTraders.Data\Extended\Models\UserSetPasswordInput.cs" Link="Data\Extended\Models\UserSetPasswordInput.cs" />
+    <Compile Include="..\MovieTraders.Data\Extended\Models\UserSetPasswordOutput.cs" Link="Data\Extended\Models\UserSetPasswordOutput.cs" />
+    <Compile Include="..\MovieTraders.Data\Extended\Models\UserUnlockInput.cs" Link="Data\Extended\Models\UserUnlockInput.cs" />
+    <Compile Include="..\MovieTraders.Data\Extended\Models\UserUnlockOutput.cs" Link="Data\Extended\Models\UserUnlockOutput.cs" />
+    <Compile Include="..\MovieTraders.Data\StaticData\CountyStatic.cs" Link="Data\StaticData\CountyStatic.cs" />
+    <Compile Include="..\MovieTraders.Data\StaticData\FormatStatic.cs" Link="Data\StaticData\FormatStatic.cs" />
+    <Compile Include="..\MovieTraders.Data\StaticData\GenreStatic.cs" Link="Data\StaticData\GenreStatic.cs" />
+    <Compile Include="..\MovieTraders.Data\StaticData\StateStatic.cs" Link="Data\StaticData\StateStatic.cs" />
+    <Compile Include="..\MovieTraders.Data\StaticData\TradeStatusStatic.cs" Link="Data\StaticData\TradeStatusStatic.cs" />
+    <Compile Include="..\MovieTraders.Security\AuthUser.cs" Link="Security\AuthUser.cs" />
+    <Compile Include="..\MovieTraders.Security\Constants.cs" Link="Security\Constants.cs" />
+    <Compile Include="..\MovieTraders.Security\ForgotPassword.cs" Link="Security\ForgotPassword.cs" />
+    <Compile Include="..\MovieTraders.Security\IValidInput.cs" Link="Security\IValidInput.cs" />
+    <Compile Include="..\MovieTraders.Security\ResetPassword.cs" Link="Security\ResetPassword.cs" />
+    <Compile Include="..\MovieTraders.Security\UserLogin.cs" Link="Security\UserLogin.cs" />
+    <Compile Include="..\MovieTraders.Security\UserRegister.cs" Link="Security\UserRegister.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="3.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Build" Version="3.2.1" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="3.2.1" PrivateAssets="all" />
+    <PackageReference Include="System.Net.Http.Json" Version="3.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Security\" />
+  </ItemGroup>
+
+</Project>

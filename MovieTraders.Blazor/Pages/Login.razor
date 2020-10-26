@@ -1,0 +1,34 @@
+﻿@page "/login"
+@page "/login/{RedirectURL}"
+@using System.Web
+
+@inherits MovieTraders.Blazor.PageBase.Common
+
+<div class="container form-wrapper">
+
+    <FormHeader Title="Please login to continue" />
+
+    <EditForm Model="@input" OnValidSubmit="@ValidSubmit">
+        <DataAnnotationsValidator />
+
+        <div class="text-danger mb-2">@FormError</div>
+
+        <div class="form-group">
+            <label asp-for="Email">Email</label>
+            <input class="form-control " type="text" @bind="input.Email" />
+            <ValidationMessage For="@(() => input.Email)" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Password">Password</label>
+            <input type="password" class="form-control" @bind="input.Password" />
+            <ValidationMessage For="@(() => input.Password)" />
+        </div>
+
+        <SaveDisable Saving="@Saving" SaveButtonText="Login" />
+
+        <h4>Forgot Password? &nbsp;<a title="Reset Password" href="forgotpassword/@HttpUtility.UrlEncode(RedirectUrl)">Reset it here!</a></h4>
+
+    </EditForm>
+
+</div>

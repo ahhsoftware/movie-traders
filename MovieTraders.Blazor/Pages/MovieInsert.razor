@@ -1,0 +1,49 @@
+﻿@page "/movie/insert"
+
+@inherits MovieTraders.Blazor.PageBase.Common
+
+<h3>Add A Movie To Movie Traders</h3>
+
+<EditForm Model="@input" OnValidSubmit="@ValidSubmit">
+    <DataAnnotationsValidator />
+    <input type="hidden" @bind="@input.CreatedByUserId" />
+
+    <div class="form-group">
+        <label asp-for="Title">Title</label>
+        <input type="text" class="form-control" @bind="input.Title" />
+        <ValidationMessage For="@(() => input.Title)" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Year">Year</label>
+        <input list="years" class="form-control" @bind="input.Year" />
+        <datalist id="years">
+            @for (int idx = 1895; idx <= DateTime.Now.Year; idx++)
+            {
+                <option value="@idx" />
+            }
+        </datalist>
+        <ValidationMessage For="@(() => input.Year)" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="GenreId">Genre</label>
+        <select class="form-control" @bind="input.GenreId">
+            <option disabled selected>-- Select Genre --</option>
+            @foreach (var genre in MovieTraders.Data.StaticData.GenreList)
+            {
+                <option value="@genre.GenreId" selected>@genre.Name</option>
+            }
+        </select>
+        <ValidationMessage For="@(() => input.GenreId)" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Link">Link</label>
+        <input type="text" class="form-control" @bind="input.Link" />
+        <ValidationMessage For="@(() => input.Link)" />
+    </div>
+
+    <SaveCancel SaveButtonText="Save" Saving="@Saving" />
+
+</EditForm>

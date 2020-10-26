@@ -1,0 +1,26 @@
+﻿@page "/usermovie/merge/{MovieId:int}"
+
+@inherits MovieTraders.Blazor.PageBase.Common
+
+<h3>@Movie.Title</h3>
+
+<p>Choose the formats that you own for this movie</p>
+
+<EditForm Model="@input" OnValidSubmit="@ValidSubmit">
+    
+    <input type="hidden" @bind="input.MovieId">
+    <input type="hidden" @bind="@input.UserId">
+
+    @foreach (var item in SelectedFormats)
+    {
+        <div class="form-check ml-2">
+            <input class="form-check-input" id="@item.FormatId" type="checkbox" @bind="item.Selected"/>
+            <label class="form-check-label" for="@item.Name">
+                @item.Name
+            </label>
+        </div>
+    }
+
+    <SaveCancel SaveButtonText="Save" CancelPage="/usermovies" />
+
+</EditForm>

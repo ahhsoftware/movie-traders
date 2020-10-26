@@ -1,0 +1,64 @@
+﻿@page "/userinvite"
+
+@inherits MovieTraders.Blazor.PageBase.Common
+
+@using MovieTraders.Data
+
+<div class="container form-wrapper">
+
+    <FormHeader Title="Invite User" />
+
+    <EditForm Model="@input" OnValidSubmit="@ValidSubmit">
+        <DataAnnotationsValidator />
+
+        <div class="text-danger mb-2">@FormError</div>
+
+        <div class="form-group">
+            <label asp-for="Email">Email</label>
+            <input class="form-control" type="text" @bind="input.Email" />
+            <ValidationMessage For="@(() => input.Email)" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Phone">Phone</label>
+            <input class="form-control" type="text" @bind="input.Phone" />
+            <ValidationMessage For="@(() => input.Phone)" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Name">Name</label>
+            <input class="form-control" type="text" @bind="input.Name" />
+            <ValidationMessage For="@(() => input.Name)" />
+        </div>
+
+        <div class="form-group">
+            <label for="StateId">State</label>
+            <select class="form-control" @bind="input.StateId" required>
+                <option disabled selected>-- Select State --</option>
+                @foreach (var state in input.States)
+                {
+                    <option value="@state.StateId">@state.Name</option>
+                }
+            </select>
+        </div>
+
+        @if (input.StateId != 0)
+        {
+            <div class="form-group">
+                <label for="CountyId">County</label>
+                <select class="form-control" @bind="input.CountyId" required>
+                    <option disabled selected>-- Select County --</option>
+                    @foreach (var county in input.Counties)
+                    {
+                        <option value="@county.CountyId">@county.Name</option>
+                    }
+                </select>
+                <ValidationMessage For="@(() => input.CountyId)" />
+            </div>
+        }
+
+        <SaveCancel CancelPage="/" SaveButtonText="Invite User" Saving="@Saving" />
+
+    </EditForm>
+
+</div>

@@ -1,0 +1,70 @@
+﻿@page "/usermovies"
+
+@inherits MovieTraders.Blazor.PageBase.Common
+
+<table class="table table-striped table-responsive w-100 d-block d-md-table">
+    <thead>
+        <tr>
+            <td style="border:none" class="align-middle" colspan="4"><h3 class="mb-3">My Movies</h3></td>
+            <td style="border:none" class="text-right align-middle" colspan="3"><a title="Add Movie" class="btn btn-primary mb-3" href="/searchmovies"><span class="oi oi-plus" /> Add Movie</a></td>
+        </tr>
+        <tr>
+            <th class="text-left align-middle">Title</th>
+            <th class="text-left align-middle">Year</th>
+            <th class="text-left align-middle">Link</th>
+            <th class="text-center align-middle">DVD</th>
+            <th class="text-center align-middle">Blue Ray</th>
+            <th class="text-center align-middle">VHS</th>
+            <th class="text-center align-middle">Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Movies)
+        {
+            <tr>
+                <td class="text-left align-middle">@movie.Title</td>
+                <td class="text-left align-middle">@movie.Year</td>
+                <td class="text-left align-middle"><a href="@movie.Link" target="_blank">Link</a></td>
+                <td class="text-center align-middle">
+                    @if(movie.DVD)
+                    {
+                        <span class="oi oi-check green"></span>
+                    }
+                    else
+                    {
+                        <span class="oi oi-x red"></span>
+                    }
+                </td>
+                <td class="text-center align-middle">
+                    @if(movie.BlueRay)
+                    {
+                        <span class="oi oi-check green"></span>
+                    }
+                    else
+                    {
+                        <span class="oi oi-x red"></span>
+                    }
+                </td>
+                <td class="text-center align-middle">
+                    @if(movie.VHS)
+                    {
+                        <span class="oi oi-check green"></span>
+                    }
+                    else
+                    {
+                        <span class="oi oi-x red"></span>
+                    }
+                </td>
+                <td class="text-center align-middle"><a class="btn btn-primary" href="/usermovie/merge/@movie.MovieId" title="Edit"><span class="oi oi-external-link" /></a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<style>
+    .red {
+        color: darkred;
+    }
+    .green{
+        color:green
+    }
+</style>

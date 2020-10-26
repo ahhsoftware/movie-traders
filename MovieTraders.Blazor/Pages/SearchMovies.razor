@@ -1,0 +1,48 @@
+﻿@page "/searchmovies"
+@page "/searchmovies/{Title}"
+
+@inherits MovieTraders.Blazor.PageBase.Common
+
+<h3>Search Movies</h3>
+
+<EditForm Model="@input" OnValidSubmit="@ValidSubmit">
+    <DataAnnotationsValidator />
+
+    <p>Search for an existing movie.</p>
+
+    <div class="form-group">
+        <label asp-for="Title">Title</label>
+        <input type="text" class="form-control" @bind="input.Title" />
+        <ValidationMessage For="@(() => input.Title)" />
+    </div>
+
+    <SaveDisable SaveButtonText="Search" Saving="@Saving" />
+
+</EditForm>
+
+@if (Movies != null)
+{
+    <table class="table table-striped table-responsive w-100 d-block d-md-table">
+        <thead>
+            <tr>
+                <th class="align-middle text-left">Title</th>
+                <th class="align-middle text-left">Year</th>
+                <th class="align-middle text-left">Link</th>
+                <th class="align-middle text-center"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in Movies)
+            {
+                <tr>
+                    <td class="align-middle text-left">@movie.Title</td>
+                    <td class="align-middle text-left">@movie.Year</td>
+                    <td class="align-middle text-left"><a href="@movie.Link" target="_blank">Link</a></td>
+                    <td class="align-middle text-center"><a class="btn btn-outline-primary" href="/usermovie/merge/@movie.MovieId" title="Add Movie"><span class="oi oi-external-link"/></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p>Not finding what you're looking for? <a href="/movie/insert">Add Movie</a></p>
+}

@@ -1,0 +1,33 @@
+﻿<br />
+@if (Saving)
+{
+    <div>
+        <p>One Moment Please...</p>
+    </div>
+}
+else
+{
+    <div>
+        <button type="submit" class="btn btn-primary" onmousedown="@ToggleSaving()">@SaveButtonText</button>
+        <a href="@CancelPage" class="btn btn-light float-right">Cancel</a>
+    </div>
+}
+<br />
+
+@code {
+
+    [Parameter]
+    public bool Saving { set; get; } = false;
+
+    [Parameter]
+    public string CancelPage { set; get; }
+
+    [Parameter]
+    public string SaveButtonText { set; get; }
+
+    private bool ToggleSaving()
+    {
+        Saving = !Saving;
+        return false;
+    }
+}

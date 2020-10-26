@@ -1,0 +1,24 @@
+﻿<div class="row">
+    <h3 class="col">@Title</h3>
+</div>
+<hr />
+@code {
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public string Default
+    {
+        set
+        {
+            if(string.IsNullOrEmpty(Title))
+            {
+                Title = value;
+            }
+        }
+        get
+        {
+            return Title;
+        }
+    }
+}

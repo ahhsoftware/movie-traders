@@ -1,0 +1,89 @@
+﻿@page "/usertrades"
+
+@using MovieTraders.Data;
+
+@inherits MovieTraders.Blazor.PageBase.Common
+
+@if (output == null)
+{
+    <p>No trades</p>
+}
+else
+{
+    <table border=1 class="table table-striped table-responsive w-100 d-block d-md-table">
+        <thead>
+            <tr>
+                <td style="border:none" class="align-middle" colspan="3"><h3 class="mb-3">Trades</h3></td>
+                <td style="border:none" class="text-right align-middle" colspan="4"><a title="New Trade" class="btn btn-primary mb-3" href="/tradestart"><span class="oi oi-plus" /> New Trade</a></td>
+            </tr>
+            <tr>
+                <th>Traded With</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th class="text-center">Status</th>
+                <th class="text-center">Notes</th>
+                <th class="text-center">Movies</th>
+                <th class="text-center">Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var trade in output.ResultData.TradesResult)
+            {
+                <tr>
+                    @if (trade.RequestUserId == State.User.UserId)
+                    {
+                        <td class="text-left align-middle">@trade.ResponseUserName</td>
+                    }
+                    else
+                    {
+                        <td class="text-left align-middle">@trade.RequestUserName</td>
+                    }
+                    <td class="align-middle">@trade.RequestDate.ToShortDateString()</td>
+                    <td class="align-middle">@trade.RequestDate.AddDays(trade.RequestDuration).ToShortDateString()</td>
+                    <td class="align-middle text-center">@StaticData.TradeStatusName(@trade.TradeStatusId)</td>
+                    <td class="align-middle text-center"><a title="Notes" class="btn btn-primary" href="javascript:void(0)" @onclick="@(() => ShowNotes(trade.TradeId))"><span class="oi oi-pencil" /></a></td>
+                    <td class="align-middle text-center"><a title="Movies" class="btn btn-primary" href="javascript:void(0)" @onclick="@(() => ShowMovies(trade.TradeId))"><span class="oi oi-video" /></a></td>
+                    <td class="align-middle text-center"><a title="Edit" class="btn btn-primary" href="usertrades/edit"><span class="oi oi-external-link" /></a></td>
+                </tr>
+                @if (SelectedTradeIdForMovies != 0 || SelectedTradeIdForNotes != 0)
+                {
+                    <tr style="background-color:white">
+                        <td colspan="7">
+                            <table class="table table-bordered table-responsive w-100 d-block d-md-table">
+                                <tbody>
+                                    <tr>
+                                        @if (trade.TradeId == SelectedTradeIdForMovies)
+                                        {
+                                            @foreach (var movie in output.ResultData.MoviesForTrade(trade.TradeId))
+                                            {
+
+                                                @if (movie.RequestUserId == State.User.UserId)
+                                                {
+                                                    <td>@movie.RequestMovieTitle (@movie.RequestMovieYear) @StaticData.FormatName(movie.RequestMovieFormat) >> @movie.ResponseMovieTitle (@movie.ResponseMovieYear) @StaticData.FormatName(movie.ResponseMovieFormat)</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>@movie.ResponseMovieTitle (@movie.ResponseMovieYear) @StaticData.FormatName(movie.ResponseMovieFormat) >> @movie.RequestMovieTitle (@movie.RequestMovieYear) @StaticData.FormatName(movie.RequestMovieFormat) </td>
+                                                }
+
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <td>@trade.Notes</td>
+                                        }
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+<style>
+    .selected {
+        background-color: #e1e1e1;
+    }
+</style>

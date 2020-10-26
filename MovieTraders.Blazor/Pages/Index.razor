@@ -1,0 +1,13 @@
+﻿@page "/"
+
+@inherits MovieTraders.Blazor.PageBase.Common
+
+<h1>Hello Movie Enthusiasts!</h1>
+
+<p>Welcome to Movie Traders.</p>
+
+@if(State.User == null)
+{
+    <p><a href="login">Login</a> to get started</p>
+}
+    

@@ -1,0 +1,61 @@
+﻿@inject MovieTraders.Blazor.LocalServices.State State
+@inject NavigationManager Navigation
+@inject IJSRuntime JavaScript
+
+
+<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href="">MovieTraders.Blazor</a>
+    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <ul class="nav flex-column">
+        <li class="nav-item px-3">
+            <NavLink id="nav-home" class="nav-link" href="" Match="NavLinkMatch.All" hidden="hidden">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink id="nav-usermovies" class="nav-link" href="usermovies" hidden="hidden">
+                <span class="oi oi-video" aria-hidden="true"></span> My Movies
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink id="nav-trades" class="nav-link" href="usertrades" hidden="hidden">
+                <span class="oi oi-people" aria-hidden="true"></span> Trades
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink id="nav-userinvite" class="nav-link" href="userinvite" hidden="hidden">
+                <span class="oi oi-envelope-closed" aria-hidden="true"></span> Invite User
+            </NavLink>
+        </li>
+        <li id="nav-logout" class="nav-item px-3" hidden="hidden">
+            <a class="nav-link" href="javascript:void(0)" @onclick="(()=> Logout())">
+                <span class="oi oi-account-logout" aria-hidden="true"></span> Logout
+            </a>
+        </li>
+    </ul>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+    private async Task Logout()
+    {
+        bool confirmed = await JavaScript.InvokeAsync<bool>("confirm", $"Are you sure you want to logout?");
+        if (confirmed)
+        {
+            var x = await JavaScript.InvokeAsync<object>("statemanager.set", nameof(MovieTraders.Security.AuthUser), null);
+            Navigation.NavigateTo("/", true);
+        }
+    }
+}
